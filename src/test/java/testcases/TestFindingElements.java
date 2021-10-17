@@ -1,12 +1,14 @@
 package testcases;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -19,11 +21,19 @@ public class TestFindingElements {
 		driver.get("http://gmail.com");
 		driver.manage().window().maximize();
 		
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+//		WebDriverWait wait = new WebDriverWait(driver, 20);
+		
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+				.withTimeout(Duration.ofSeconds(30))
+				.pollingEvery(Duration.ofSeconds(5))
+				.withMessage("User defined Timed out after 30 seconds")
+				.ignoring(NoSuchElementException.class);
+		
 //		WebElement username = driver.findElement(By.id("identifierId"));
 //		username.sendKeys("tflrunningsheet@gmail.com");
 //		WebElement nextBtn = driver.findElement(By.xpath("//*[@id=\"identifierNext\"]/div/button/span"));
 //		nextBtn.click();
+		
 //		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 //		driver.findElement(By.xpath("//*[@id=\"identifierId\"]")).sendKeys("tflrunningsheet@gmail.com");
