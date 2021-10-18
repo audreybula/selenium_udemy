@@ -35,13 +35,20 @@ public class TestDropdowns {
 			System.out.println(values.get(i).getText());
 		}
 		
-		List<WebElement> links = driver.findElements(By.tagName("a"));
+		WebElement block = driver.findElement(By.xpath("//*[@id=\"www-wikipedia-org\"]/div[9]/div[3]"));
+//		block.findElements(By.tagName("a"));
+		
+		List<WebElement> links = block.findElements(By.tagName("a"));
 		
 		System.out.println(links.size());
 		System.out.println(links.get(7).getText());
 		
 		for(int i = 0; i < links.size(); i++) {
 			System.out.println(links.get(i).getText());
+		}
+		
+		for(WebElement link: links) {
+			link.getText();
 		}
 	}
 
