@@ -14,7 +14,6 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TestFindingElements {
 	
-	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		WebDriverManager.firefoxdriver().setup();
 		WebDriver driver = new FirefoxDriver();
