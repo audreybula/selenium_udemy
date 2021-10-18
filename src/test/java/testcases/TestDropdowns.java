@@ -34,6 +34,15 @@ public class TestDropdowns {
 		for(int i = 0; i < values.size(); i++) {
 			System.out.println(values.get(i).getText());
 		}
+		
+		List<WebElement> links = driver.findElements(By.tagName("a"));
+		
+		System.out.println(links.size());
+		System.out.println(links.get(7).getText());
+		
+		for(int i = 0; i < links.size(); i++) {
+			System.out.println(links.get(i).getText());
+		}
 	}
 
 }
