@@ -1,6 +1,7 @@
 package testcases;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -24,6 +25,15 @@ public class TestDropdowns {
 		
 //		select.selectByVisibleText("Eesti");
 		select.selectByValue("hi");
+		
+		List<WebElement> values = driver.findElements(By.tagName("option"));
+		
+		System.out.println(values.size());
+		System.out.println(values.get(7).getText());
+		
+		for(int i = 0; i < values.size(); i++) {
+			System.out.println(values.get(i).getText());
+		}
 	}
 
 }
