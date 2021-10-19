@@ -11,15 +11,32 @@ import org.openqa.selenium.support.ui.Select;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TestIsElementPresent {
+	
+	public static WebDriver driver;
+	
+	public static boolean isElementPresent(String locator) {
+		try{ 
+			
+			driver.findElement(By.xpath(locator));
+			return true;
+			
+		} catch(Throwable t) {
+			
+			return false;
+			
+		}
+	}
 
 	public static void main(String[] args) {
+		
 		WebDriverManager.chromedriver().setup();
-		WebDriver driver = new ChromeDriver();
+		driver = new ChromeDriver();
 		driver.get("https://www.wikipedia.org");
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		
-		driver.findElement(By.xpath("//*[@id=\"js-link-box-en\"]/strong")).isDisplayed();
+		System.out.println(isElementPresent("//*[@id=\"js-link-box-en\"]/strong"));
+		
 	}
 
 }
