@@ -1,9 +1,11 @@
 package testcases;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -38,12 +40,20 @@ public class TestCheckboxes {
 //			
 //		}
 		
-		int i = 1;
+//		int i = 1;
+//		
+//		while(isElementPresent(By.xpath("/html/body/table[3]/tbody/tr[1]/td[2]/table/tbody/tr/td/div[4]/input[" + i + "]"))) {
+//			
+//			driver.findElement(By.xpath("/html/body/table[3]/tbody/tr[1]/td[2]/table/tbody/tr/td/div[4]/input[" + i + "]")).click();
+//			i++;
+//			
+//		}
 		
-		while(isElementPresent(By.xpath("/html/body/table[3]/tbody/tr[1]/td[2]/table/tbody/tr/td/div[4]/input[" + i + "]"))) {
+		List<WebElement> checkboxes = driver.findElements(By.name("sports"));
+		
+		for(WebElement checkbox: checkboxes) {
 			
-			driver.findElement(By.xpath("/html/body/table[3]/tbody/tr[1]/td[2]/table/tbody/tr/td/div[4]/input[" + i + "]")).click();
-			i++;
+			checkbox.click();
 			
 		}
 
