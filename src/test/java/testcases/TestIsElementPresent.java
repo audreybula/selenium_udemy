@@ -14,17 +14,24 @@ public class TestIsElementPresent {
 	
 	public static WebDriver driver;
 	
-	public static boolean isElementPresent(String locator) {
-		try{ 
-			
-			driver.findElement(By.xpath(locator));
-			return true;
-			
-		} catch(Throwable t) {
-			
+	public static boolean isElementPresent(By by) {
+//		try{ 
+//			
+//			driver.findElement(By.xpath(locator));
+//			return true;
+//			
+//		} catch(Throwable t) {
+//			
+//			return false;
+//			
+//		}
+		
+		int size = driver.findElements(by).size();
+		
+		if(size == 0) {
 			return false;
-			
 		}
+		return true;
 	}
 
 	public static void main(String[] args) {
@@ -35,7 +42,7 @@ public class TestIsElementPresent {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		
-		System.out.println(isElementPresent("//*[@id=\"js-link-box-en\"]/strong"));
+		System.out.println(isElementPresent(By.xpath("//*[@id=\"js-link-box-en\"]/strong")));
 		
 	}
 
