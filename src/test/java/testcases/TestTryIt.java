@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -21,7 +22,14 @@ public class TestTryIt {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		
 		driver.switchTo().frame("iframeResult");
-		driver.findElement(By.xpath("//button[@onclick='myFunction()']")).click();
+//		driver.findElement(By.xpath("//button[@onclick='myFunction()']")).click();
+		
+//		((JavascriptExecutor) driver).executeScript("myFunction()");
+		
+		WebElement elem = driver.findElement(By.xpath("//input[@id='mySubmit']"));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("myFunction()");
+		js.executeScript("arguments[0].style.border='3px solid red'", elem);
 		
 		driver.switchTo().defaultContent();
 		
