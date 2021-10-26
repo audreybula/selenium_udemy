@@ -1,10 +1,15 @@
 package testcases;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -13,7 +18,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TestTryIt {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		WebDriverManager.firefoxdriver().setup();
 		WebDriver driver = new FirefoxDriver();
@@ -25,6 +30,8 @@ public class TestTryIt {
 //		driver.findElement(By.xpath("//button[@onclick='myFunction()']")).click();
 		
 //		((JavascriptExecutor) driver).executeScript("myFunction()");
+		
+		
 		
 		WebElement elem = driver.findElement(By.xpath("//input[@id='mySubmit']"));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -40,6 +47,9 @@ public class TestTryIt {
 		for(WebElement frame : frames) {
 			System.out.println(frame.getAttribute("id"));
 		}
+		
+		File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshot, new File("/Users/admin/Desktop/dev/selenium/selenium_udemy/src/screenshot/img.jpg"));
 
 	}
 
