@@ -33,16 +33,9 @@ public class TestElementScreenshot {
 				new File("/Users/admin/Desktop/dev/selenium/selenium_udemy/src/screenshot/" + fileName));
 
 	}
-
-	public static void main(String[] args) throws IOException {
-
-		WebDriverManager.firefoxdriver().setup();
-		driver = new FirefoxDriver();
-		driver.get("https://www.way2automation.com");
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-		WebElement ele = driver.findElement(By.xpath("//img[@id='MzE5OjY4Mg==-1']"));
-
+	
+	public static void captureElementScreenshot(WebElement ele) throws IOException {
+		
 		File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		BufferedImage fullImg = ImageIO.read(screenshot);
 
@@ -57,9 +50,25 @@ public class TestElementScreenshot {
 		BufferedImage eleScreenshot = fullImg.getSubimage(point.getX(), point.getY(), width, height);
 		ImageIO.write(eleScreenshot, "jpg", screenshot);
 		
+		Date d = new Date();
+		String fileName = d.toString().replace(":", "_").replace(" ", "_") + ".jpg";
+		
 		File screenshotLocation = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(screenshotLocation,
-				new File("/Users/admin/Desktop/dev/selenium/selenium_udemy/src/screenshot/" + "googlelogo.jpg"));
+				new File("/Users/admin/Desktop/dev/selenium/selenium_udemy/src/screenshot/" + fileName));
+		
+	}
+
+	public static void main(String[] args) throws IOException {
+
+		WebDriverManager.firefoxdriver().setup();
+		driver = new FirefoxDriver();
+		driver.get("https://www.way2automation.com");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+		WebElement ele = driver.findElement(By.xpath("//img[@id='MzE5OjY4Mg==-1']"));
+
+		captureElementScreenshot(ele);
 
 	}
 
